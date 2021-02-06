@@ -26,6 +26,8 @@ function Server({ scheme = "http", domain }) {
       console.log("server catch request", request);
       const client = request.headers.host;
 
+      request.body = JSON.parse(request.body);
+
       const resolveResponse = () =>
         new Promise((resolve, reject) => {
           const server = this.server;
@@ -52,7 +54,7 @@ function Server({ scheme = "http", domain }) {
           };
 
           try {
-            this.callback(message, resolver);
+            this.callback(request, resolver);
           } catch (e) {
             reject(e);
           }
@@ -73,6 +75,9 @@ function Server({ scheme = "http", domain }) {
   };
   this.get = (path, cb) => this.route("GET", path, cb);
   this.post = (path, cb) => this.route("POST", path, cb);
+  this.put = (path, cb) => this.route("PUT", path, cb);
+  this.delete = (path, cb) => this.route("DELETE", path, cb);
+  this.patch = (path, cb) => this.route("PATCH", path, cb);
 }
 
 export default Server;

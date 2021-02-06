@@ -17,10 +17,17 @@ export default function Collection(name) {
   this.getDocument = (id) => stack.find((document) => document._id === id);
   this.deleteDocument = (id) => {
     const deletedIndex = stack.findIndex((document) => document._id === id);
+    if (deletedIndex === -1) {
+      return false;
+    }
+
     return stack.splice(deletedIndex, 1);
   };
   this.updateDocument = (id, data) => {
     const updatedIndex = stack.findIndex((document) => document._id === id);
+    if (updatedIndex === -1) {
+      return false;
+    }
     stack[updatedIndex] = data;
     return stack[updatedIndex];
   };

@@ -7,12 +7,12 @@ export default function useFetch(
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
-  const [fetchData, setFetchData] = useState(null);
+  const [fetchData, setFetchData] = useState();
   const fetchControllerRef = useRef(new AbortController());
   const isLoadingRef = useRef(isLoading);
 
-  const createFetchData = useCallback(
-    (url) => async () => {
+  useEffect(() => {
+    setFetchData(async (body) => {
       if (isLoadingRef.current) {
         return;
       }
@@ -21,7 +21,11 @@ export default function useFetch(
         setIsLoading(true);
         const res = await fetch(url, {
           ...options,
-          signal: fetchControllerRef.current.signal
+          signal: fetchControllerRef.current.signal,
+          body: {
+            ...options.body,
+            ...body
+          }
         });
         const data = await res.json();
 
@@ -31,15 +35,8 @@ export default function useFetch(
       } finally {
         setIsLoading(false);
       }
-    },
-    [options]
-  );
-
-  const fetchController = fetchControllerRef.current;
-
-  useEffect(() => {
-    setFetchData(createFetchData(url));
-  }, [url, createFetchData]);
+    });
+  }, [url]);
 
   useEffect(() => {
     isLoadingRef.current = isLoading;
@@ -47,13 +44,13 @@ export default function useFetch(
 
   useEffect(() => {
     options.onMount && fetchData();
-    return () => fetchController.abort();
-  }, [fetchData, options, fetchController]);
+    return () => fetchControllerRef.current.abort();
+  }, [fetchData]);
 
   return {
     isLoading,
     error,
     data,
-    fetchData
+    fetchData: (body) => fetchData(body)
   };
 }

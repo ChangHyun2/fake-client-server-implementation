@@ -80,7 +80,7 @@ const MyDB = (function () {
           return TimeoutPromise((res, rej) => {
             const deleted = connectedDB.collections[name].deleteDocument(id);
             if (!deleted) {
-              rej(new Error(`can not delete ${name} model by id: ${id}`));
+              res(undefined);
             }
             res(deleted);
           }, 200);
@@ -95,7 +95,7 @@ const MyDB = (function () {
               data
             );
             if (!updated) {
-              rej(new Error(`can not update ${name} model by id: ${id}`));
+              res(undefined);
             }
             res(updated);
           }, 200);
