@@ -6,10 +6,11 @@ require("./MyDB");
 
 const server = new Server({ domain: "localhost", scheme: "http" });
 server.listen(3000, () => console.log("listening 3000 port..."));
-server.get("/posts", async (req, res) => {
-  const data = await TimeoutPromise((res, rej) => res(3), 1000);
-  res.json({
-    posts: ["a", "b", "c"],
-    data
-  });
+
+server.get("/cards", async (req, res) => {
+  const cards = await Card.getAll();
+
+  res.status(200).json({ cards });
 });
+
+server.post("/cards", async (req, res) => {});

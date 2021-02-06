@@ -7,7 +7,7 @@ import App from "./App";
 window.client
   .fetch({
     origin: "http://localhost:3000",
-    path: "/posts"
+    path: "/cards"
   })
   .then((res) => res.json())
   .then((data) => console.log(data));

@@ -17,7 +17,6 @@ const http = async (destination, message) => {
 
     // 전송하는 메세지가 서버가 전송하는 응답 message일 경우
     if (message.headers.server) {
-      console.log("catch by client");
       return receiver.catch(message);
     }
 

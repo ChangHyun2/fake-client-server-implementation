@@ -38,7 +38,6 @@ const MyDB = (function () {
         const Model = function (data) {
           myDB.checkConnected();
 
-          console.log(connectedDB);
           const model = connectedDB.collections[name].insertDocument(data);
 
           return TimeoutPromise((res, rej) => {

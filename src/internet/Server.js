@@ -16,12 +16,14 @@ function Server({ scheme = "http", domain }) {
     */
     network.push(this);
     callback();
+    console.log(`server ${this.origin} is connected to network`);
   };
   this.Router = function Router(server, path, cb) {
     this.server = server;
     this.path = path;
     this.callback = cb;
     this.catch = async (request) => {
+      console.log("server catch request", request);
       const client = request.headers.host;
 
       const resolveResponse = () =>
@@ -35,16 +37,18 @@ function Server({ scheme = "http", domain }) {
               resolve(message);
             },
             json: (json) => {
-              console.log(message);
               message.body = JSON.stringify(json);
               message.headers.server = server;
               resolve(message);
             },
             status: (code) => {
               message.status = code;
+              return resolver;
             },
-            setHeaders: (headers) =>
-              (message.headers = { ...message.headers, ...headers })
+            setHeaders: (headers) => {
+              message.headers = { ...message.headers, ...headers };
+              return resolver;
+            }
           };
 
           try {
@@ -69,7 +73,6 @@ function Server({ scheme = "http", domain }) {
   };
   this.get = (path, cb) => this.route("GET", path, cb);
   this.post = (path, cb) => this.route("POST", path, cb);
-  network.push(this);
 }
 
 export default Server;
