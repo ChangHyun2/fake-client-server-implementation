@@ -15,7 +15,7 @@ client.fetch = async (server, options = {}) => {
       // browser default headers...
       ...headers
     },
-    body
+    body: JSON.stringify(body)
   };
 
   const { origin, path } = server;
