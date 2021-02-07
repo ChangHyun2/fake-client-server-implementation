@@ -1,14 +1,15 @@
-import CardList from "./PostEditor/CardList";
-import PostCard from "./PostEditor/PostCard";
-import { getCardsAPI } from "../fetchAPI/cards";
+import { useRef } from "react";
+import CardList from "./postEditor/CardList";
+import PostCard from "./postEditor/PostCard";
+import NetworkLogger from "./postEditor/NetworkLogger";
+import { CardsAPIProvider } from "../fetchAPI/cards";
 
 export default function PostEditor() {
-  const getCards = getCardsAPI();
-
   return (
-    <div>
-      <CardList getCards={getCards} />
-      <PostCard getCards={getCards} />
-    </div>
+    <CardsAPIProvider>
+      <NetworkLogger />
+      <CardList />
+      <PostCard />
+    </CardsAPIProvider>
   );
 }

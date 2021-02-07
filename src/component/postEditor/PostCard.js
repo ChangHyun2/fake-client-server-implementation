@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { getCardsAPI, postCardAPI } from "../../fetchAPI/cards";
+import { usePostCard, useGetCards } from "../../fetchAPI/cards";
 import { Former, useForm, useField } from "../../lib/Former";
 import styled from "styled-components";
 
@@ -94,8 +94,9 @@ const Input = ({ type, name }) => {
   );
 };
 
-export default function PostCard({ getCards }) {
-  const postCard = postCardAPI();
+export default function PostCard() {
+  const postCard = usePostCard();
+  const getCards = useGetCards();
 
   const handleSubmit = async (values) => {
     try {

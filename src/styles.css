@@ -17,7 +17,11 @@
   align-items: center;
 }
 body {
-  overflow: hidden;
+  /* overflow: hidden; */
+}
+
+* {
+  box-shadow: 0 0 5px #ccc;
 }
 li {
   list-style: none;

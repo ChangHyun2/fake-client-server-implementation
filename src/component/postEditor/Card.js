@@ -1,5 +1,5 @@
 import React from "react";
-import { deleteCardAPI, getCardsAPI } from "../../fetchAPI/cards";
+import { useDeleteCard, useGetCards } from "../../fetchAPI/cards";
 import styled from "styled-components";
 import CardUI from "../UI/Card";
 
@@ -34,8 +34,9 @@ const StyledCard = styled(CardUI)`
   }
 `;
 
-export default function Card({ getCards, id, title, content }) {
-  const deleteCard = deleteCardAPI();
+export default function Card({ id, title, content }) {
+  const deleteCard = useDeleteCard();
+  const getCards = useGetCards();
 
   const handleClick = async () => {
     await deleteCard.fetchData({ id });
