@@ -13,7 +13,6 @@ const StyledCardList = styled.ul`
 
 export default function CardList({ getCards }) {
   const { isLoading, data, error } = getCards;
-
   console.log(data);
   if (error) {
     console.log(error, data);

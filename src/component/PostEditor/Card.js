@@ -38,7 +38,7 @@ export default function Card({ getCards, id, title, content }) {
   const deleteCard = deleteCardAPI();
 
   const handleClick = async () => {
-    await deleteCard.fetchData(id);
+    await deleteCard.fetchData({ id });
     await getCards.fetchData();
   };
 

@@ -17,10 +17,12 @@ export default function Collection(name) {
   this.getDocument = (id) => stack.find((document) => document._id === id);
   this.deleteDocument = (id) => {
     const deletedIndex = stack.findIndex((document) => document._id === id);
+    console.log(stack, id);
     if (deletedIndex === -1) {
       return false;
     }
 
+    console.log("deleted");
     return stack.splice(deletedIndex, 1);
   };
   this.updateDocument = (id, data) => {

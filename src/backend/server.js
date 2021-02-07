@@ -57,10 +57,10 @@ export const initBackend = TimeoutPromise((res, rej) => {
     });
 
     server.delete("/cards", async (req, res) => {
-      const { id, data } = req.body;
+      const { id } = req.body;
 
       try {
-        const deleted = await Card.delete(id, data);
+        const deleted = await Card.delete(id);
         if (!deleted) {
           res.status(204);
         }

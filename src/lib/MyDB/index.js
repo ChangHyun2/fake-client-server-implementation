@@ -81,6 +81,7 @@ const MyDB = (function () {
           return TimeoutPromise((res, rej) => {
             const deleted = connectedDB.collections[name].deleteDocument(id);
             if (!deleted) {
+              console.log("noting");
               res(undefined);
             }
             res(deleted);
