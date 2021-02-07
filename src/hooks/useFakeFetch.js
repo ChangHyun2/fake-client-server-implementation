@@ -36,6 +36,7 @@ export default function useFakeFetch(
   });
 
   useEffect(() => {
+    console.log("set changed", isLoading);
     isLoadingRef.current = isLoading;
   }, [isLoading]);
 
