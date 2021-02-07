@@ -1,2 +1,2 @@
-export let FETCH_SPEED = 100;
-export let DB_SPEED = 100;
+export let FETCH_SPEED = 200;
+export let DB_SPEED = 200;
