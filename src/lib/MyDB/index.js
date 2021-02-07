@@ -1,5 +1,6 @@
 import database from "../../database";
 import { TimeoutPromise } from "../../utils";
+import { DB_SPEED } from "../../variable/requestSpeed";
 
 const MyDB = (function () {
   let myDB = null;
@@ -26,7 +27,7 @@ const MyDB = (function () {
           );
 
           res(true);
-        }, 200),
+        }, DB_SPEED),
       checkConnected: () => {
         if (!connected) {
           throw new Error("db is not connected!");
@@ -45,7 +46,7 @@ const MyDB = (function () {
               rej(`${name} model is not created`);
             }
             res(model);
-          }, 200);
+          }, DB_SPEED);
         };
 
         Model.getAll = () => {
@@ -57,7 +58,7 @@ const MyDB = (function () {
               rej(`thire is no ${name} model in DB`);
             }
             res(models);
-          }, 200);
+          }, DB_SPEED);
         };
 
         Model.findById = (id) => {
@@ -71,7 +72,7 @@ const MyDB = (function () {
             }
 
             res(model);
-          }, 200);
+          }, DB_SPEED);
         };
 
         Model.delete = (id) => {
@@ -83,7 +84,7 @@ const MyDB = (function () {
               res(undefined);
             }
             res(deleted);
-          }, 200);
+          }, DB_SPEED);
         };
 
         Model.update = (id, data) => {
@@ -98,7 +99,7 @@ const MyDB = (function () {
               res(undefined);
             }
             res(updated);
-          }, 200);
+          }, DB_SPEED);
         };
 
         return Model;

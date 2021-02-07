@@ -9,8 +9,11 @@ server.listen(3000, () => console.log("listening 3000 port..."));
 
 server.get("/cards", async (req, res) => {
   try {
-    const cards = await Card.getAll();
-    console.log(cards);
+    let cards = await Card.getAll();
+    cards = cards.map((card) => ({
+      ...card,
+      id: card._id
+    }));
 
     res.status(200).json(cards);
   } catch (e) {

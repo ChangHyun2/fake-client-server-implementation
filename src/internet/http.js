@@ -1,5 +1,6 @@
 import network from "./network";
 import { TimeoutPromise } from "../utils";
+import { HTTP_SPEED } from "../variable/requestSpeed";
 
 const http = async (destination, message) => {
   try {
@@ -13,7 +14,7 @@ const http = async (destination, message) => {
         rej(new Error("url is not defined"));
       }
       res(findedReceiver);
-    }, 1000);
+    }, HTTP_SPEED);
 
     // 전송하는 메세지가 서버가 전송하는 응답 message일 경우
     if (message.headers.server) {

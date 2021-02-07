@@ -1,7 +1,7 @@
 import "./styles.css";
-import useFakeFetch from "./hooks/useFakeFetch";
-import { useEffect } from "react";
+
 import PostEditor from "./component/PostEditor";
+import NetworkSpeed from "./component/NetworkSpeed";
 
 export default function App() {
   return (
@@ -12,7 +12,18 @@ export default function App() {
           😀
         </span>
       </h1>
+      <NetworkSpeed />
       <PostEditor />
+      <p
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: "50%",
+          transform: "translateX(-50%)"
+        }}
+      >
+        https://github.com/ChangHyun2
+      </p>
     </div>
   );
 }

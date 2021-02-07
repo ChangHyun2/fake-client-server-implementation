@@ -1,13 +1,20 @@
 import Card from "./Card";
 import styled from "styled-components";
 
-const StyledCardList = styled.ul``;
+const StyledCardList = styled.ul`
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+
+  li {
+    width: 33.3333%;
+  }
+`;
+
 export default function CardList({ getCards }) {
   const { isLoading, data, error } = getCards;
 
-  if (isLoading) {
-    return "...isLoading";
-  }
+  console.log(data);
   if (error) {
     console.log(error, data);
     return "error!";
@@ -16,11 +23,16 @@ export default function CardList({ getCards }) {
   if (data) {
     return (
       <StyledCardList>
+        {isLoading ? "...isLoading" : null}
         {data.length ? (
-          data.map(({ title, content }) => (
-            <li key={title + content + Math.random()}>
-              <h2>{title}</h2>
-              <p>{content}</p>
+          data.map(({ id, title, content }) => (
+            <li key={id}>
+              <Card
+                id={id}
+                title={title}
+                content={content}
+                getCards={getCards}
+              />
             </li>
           ))
         ) : (

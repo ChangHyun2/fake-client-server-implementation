@@ -95,11 +95,11 @@ const Input = ({ type, name }) => {
 };
 
 export default function PostCard({ getCards }) {
-  const { error, isLoading, fetchData } = postCardAPI();
+  const postCard = postCardAPI();
 
   const handleSubmit = async (values) => {
     try {
-      await fetchData(values);
+      await postCard.fetchData(values);
       await getCards.fetchData();
     } catch (e) {
       console.error(e);
@@ -138,8 +138,8 @@ export default function PostCard({ getCards }) {
           <Input type="text" name="title" />
           <Input type="text" name="content" />
           <button
-            disabled={isLoading}
-            style={error ? { border: "red 1px" } : null}
+            disabled={postCard.isLoading}
+            style={postCard.error ? { border: "red 1px" } : null}
           >
             add card
           </button>

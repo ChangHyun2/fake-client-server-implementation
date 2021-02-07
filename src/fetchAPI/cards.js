@@ -8,3 +8,5 @@ const endpoint = {
 export const getCardsAPI = () => useFakeFetch(endpoint);
 export const postCardAPI = () =>
   useFakeFetch(endpoint, { method: "POST", onMount: false });
+export const deleteCardAPI = () =>
+  useFakeFetch(endpoint, { method: "DELETE", onMount: false });
