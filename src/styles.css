@@ -5,9 +5,20 @@
 .App {
   font-family: sans-serif;
   text-align: center;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 }
 
+#root {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body {
+  overflow: hidden;
+}
 li {
   list-style: none;
 }

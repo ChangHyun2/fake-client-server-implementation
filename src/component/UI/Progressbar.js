@@ -160,8 +160,9 @@ export default React.forwardRef(function Progress(
   }, [isMoving, handleMouseUp, handleMouseMove]);
 
   useEffect(() => {
-    setBallLength(progressRef.current.getBoundingClientRect().height);
-  }, [setBallLength]);
+    const progressBoundingRect = progressRef.current.getBoundingClientRect();
+    setBallLength(progressBoundingRect.height);
+  }, []);
 
   return (
     <StyledProgress
@@ -171,12 +172,15 @@ export default React.forwardRef(function Progress(
     >
       <input data-isactive={isMoving} ref={ref} value={value} type="hidden" />
       <Rail className="progress__rail" size={0.6}>
-        <Train className="progress__train" offset={value} />
+        <Train
+          className="progress__train"
+          offset={(value / (max - min)) * 100}
+        />
       </Rail>
       <Ball
         className="progress__ball"
         length={ballLength}
-        offset={value}
+        offset={(value / (max - min)) * 100}
       ></Ball>
     </StyledProgress>
   );

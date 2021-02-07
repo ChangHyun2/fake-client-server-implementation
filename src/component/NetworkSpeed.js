@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import * as networkSpeed from "../variable/requestSpeed";
-import Progressbar from "./Progressbar";
+import Progressbar from "./UI/Progressbar";
 
 // value, onChange, onMouseDown, onMouseUp, max = 100, min = 0, colors
 const StyledSpeedController = styled.div`
@@ -19,13 +19,16 @@ const StyledSpeedController = styled.div`
   }
 `;
 
+const MAX_SPEED = 5000;
+const MIN_SPEED = 0;
+
 const SpeedController = ({ name }) => {
   const [value, setValue] = React.useState(
     networkSpeed[name.toUpperCase() + "_SPEED"]
   );
 
   useEffect(() => {
-    networkSpeed[name.toUpperCase() + "_SPEED"] = value * 50;
+    networkSpeed[name.toUpperCase() + "_SPEED"] = value;
   }, [value, name]);
 
   return (
@@ -45,12 +48,12 @@ const SpeedController = ({ name }) => {
           onMouseDown={setValue}
           onChange={setValue}
           size={20}
-          min={0}
-          max={100}
+          min={MIN_SPEED}
+          max={MAX_SPEED}
           value={value}
         />
       </div>
-      <div className="value">{(value / 20).toFixed(1) + " sec / req"}</div>
+      <div className="value">{(value / 1000).toFixed(1) + " sec / req"}</div>
     </StyledSpeedController>
   );
 };

@@ -1,10 +1,9 @@
 import React from "react";
 import { deleteCardAPI, getCardsAPI } from "../../fetchAPI/cards";
 import styled from "styled-components";
+import CardUI from "../UI/Card";
 
-const StyledCard = styled.div`
-  border-radius: 5px;
-  border: 1.5px solid black;
+const StyledCard = styled(CardUI)`
   margin: 10px;
 
   button {
@@ -26,14 +25,11 @@ const StyledCard = styled.div`
     }
   }
 
-  h2 {
-    padding: 0 1em;
-    font-size: 20px;
+  .header {
     clear: both;
   }
 
-  p {
-    padding: 0 1em;
+  .content {
     word-wrap: break-word;
   }
 `;
@@ -49,8 +45,8 @@ export default function Card({ getCards, id, title, content }) {
   return (
     <StyledCard>
       <button onClick={handleClick}>x</button>
-      <h2>{title}</h2>
-      <p>{content}</p>
+      <CardUI.Header>{title}</CardUI.Header>
+      <CardUI.Content>{content}</CardUI.Content>
     </StyledCard>
   );
 }
