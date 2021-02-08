@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import * as networkSpeed from "../variable/requestSpeed";
+import * as networkSpeed from "../variable/networkSpeed";
 import Progressbar from "./UI/Progressbar";
 
-// value, onChange, onMouseDown, onMouseUp, max = 100, min = 0, colors
 const StyledSpeedController = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 
   label {
-    width: 50px;
+    width: 120px;
     text-align: left;
   }
 
@@ -23,9 +22,14 @@ const MAX_SPEED = 5000;
 const MIN_SPEED = 0;
 
 const SpeedController = ({ name }) => {
-  const [value, setValue] = React.useState(
-    networkSpeed[name.toUpperCase() + "_SPEED"]
-  );
+  const speed =
+    networkSpeed[
+      name
+        .split("-")
+        .map((s) => s.toUpperCase())
+        .join("_") + "_SPEED"
+    ];
+  const [value, setValue] = React.useState(speed);
 
   useEffect(() => {
     networkSpeed[name.toUpperCase() + "_SPEED"] = value;
@@ -62,8 +66,8 @@ export default function NetworkSpeed() {
   return (
     <div>
       <h2>network speed</h2>
-      <SpeedController name="Fetch" />
-      <SpeedController name="DB" />
+      <SpeedController name="Client-Server" />
+      <SpeedController name="Server-DB" />
     </div>
   );
 }

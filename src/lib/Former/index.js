@@ -45,6 +45,7 @@ export const Former = (props) => {
         }
 
         await props.handleSubmit(values);
+        setValues(props.initialValues);
       } catch (errors) {
         throw errors;
       }

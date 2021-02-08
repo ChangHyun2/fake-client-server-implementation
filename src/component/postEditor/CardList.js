@@ -6,6 +6,7 @@ const StyledCardList = styled.ul`
   display: flex;
   width: 100%;
   flex-wrap: wrap;
+  padding: 0 20px;
 
   li {
     width: 33.3333%;

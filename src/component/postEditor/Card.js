@@ -2,27 +2,31 @@ import React from "react";
 import { useDeleteCard, useGetCards } from "../../fetchAPI/cards";
 import styled from "styled-components";
 import CardUI from "../UI/Card";
+import DeleteIcon from "@material-ui/icons/Delete";
+import CreateIcon from "@material-ui/icons/Create";
 
 const StyledCard = styled(CardUI)`
   margin: 10px;
+  max-width: 250px;
+  align-self: flex-start;
 
   button {
-    float: right;
-    margin-bottom: 8px;
-    margin-right: 6px;
-    width: 20px;
-    height: 20px;
+    padding: 0;
     background: none;
     border: none;
-    font-size: 22px;
     outline: none;
-    color: #777;
+
+    svg {
+      font-size: 16px;
+      color: #777;
+      transition: transform 0.1s;
+      :hover {
+        color: #111;
+        transform: scale(1.1);
+      }
+    }
 
     cursor: pointer;
-
-    &:hover {
-      color: #111;
-    }
   }
 
   .header {
@@ -32,6 +36,12 @@ const StyledCard = styled(CardUI)`
   .content {
     word-wrap: break-word;
   }
+`;
+
+const CardMenu = styled.div`
+  float: right;
+  padding: 4px 2px 3px 0;
+  margin-bottom: 2px;
 `;
 
 export default function Card({ id, title, content }) {
@@ -45,9 +55,16 @@ export default function Card({ id, title, content }) {
 
   return (
     <StyledCard>
-      <button onClick={handleClick}>x</button>
-      <CardUI.Header>{title}</CardUI.Header>
-      <CardUI.Content>{content}</CardUI.Content>
+      <CardMenu>
+        <button onClick={handleClick}>
+          <DeleteIcon />
+        </button>
+        <button onClick={() => console.log("modify icon")}>
+          <CreateIcon />
+        </button>
+      </CardMenu>
+      <CardUI.Header className="header">{title}</CardUI.Header>
+      <CardUI.Content className="content">{content}</CardUI.Content>
     </StyledCard>
   );
 }

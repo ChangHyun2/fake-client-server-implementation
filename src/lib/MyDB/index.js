@@ -1,6 +1,6 @@
 import database from "../../database";
 import { TimeoutPromise } from "../../utils";
-import { DB_SPEED } from "../../variable/requestSpeed";
+import { SERVER_DB_SPEED } from "../../variable/networkSpeed";
 
 const MyDB = (function () {
   let myDB = null;
@@ -27,7 +27,7 @@ const MyDB = (function () {
           );
 
           res(true);
-        }, DB_SPEED),
+        }, SERVER_DB_SPEED),
       checkConnected: () => {
         if (!connected) {
           throw new Error("db is not connected!");
@@ -46,7 +46,7 @@ const MyDB = (function () {
               rej(`${name} model is not created`);
             }
             res(model);
-          }, DB_SPEED);
+          }, SERVER_DB_SPEED);
         };
 
         Model.getAll = () => {
@@ -58,7 +58,7 @@ const MyDB = (function () {
               rej(`thire is no ${name} model in DB`);
             }
             res(models);
-          }, DB_SPEED);
+          }, SERVER_DB_SPEED);
         };
 
         Model.findById = (id) => {
@@ -72,7 +72,7 @@ const MyDB = (function () {
             }
 
             res(model);
-          }, DB_SPEED);
+          }, SERVER_DB_SPEED);
         };
 
         Model.delete = (id) => {
@@ -85,7 +85,7 @@ const MyDB = (function () {
               res(undefined);
             }
             res(deleted);
-          }, DB_SPEED);
+          }, SERVER_DB_SPEED);
         };
 
         Model.update = (id, data) => {
@@ -100,7 +100,7 @@ const MyDB = (function () {
               res(undefined);
             }
             res(updated);
-          }, DB_SPEED);
+          }, SERVER_DB_SPEED);
         };
 
         return Model;
