@@ -10,19 +10,29 @@
 }
 
 #root {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
+
 body {
   /* overflow: hidden; */
 }
 
-* {
+/* * {
   box-shadow: 0 0 5px #ccc;
-}
+} */
 li {
   list-style: none;
+}
+h1 {
+  line-height: 1.4;
+}
+h2 {
+  line-height: 1;
+  font-size: 20px;
+  margin-bottom: 5px;
 }
