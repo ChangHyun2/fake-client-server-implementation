@@ -96,6 +96,7 @@ const Input = ({ type, name }) => {
         type={type}
         value={value}
         onChange={(e) => setValue(e.target.value)}
+        autoComplete="off"
       />
     </>
   );
@@ -133,10 +134,10 @@ export default function PostCard() {
           content: (value) => {
             const errors = [];
             if (typeof value !== "string") {
-              errors.push("title must be string");
+              errors.push("content must be string");
             }
-            if (value.length <= 4) {
-              errors.push("title length should be longer than 8");
+            if (value.length <= 8) {
+              errors.push("content length should be longer than 8");
             }
             return errors;
           }

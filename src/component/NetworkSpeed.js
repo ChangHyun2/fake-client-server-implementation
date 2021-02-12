@@ -22,18 +22,19 @@ const StyledSpeedController = styled.div`
 const MAX_SPEED = 5000;
 const MIN_SPEED = 0;
 
+const toConstantVariable = (name) =>
+  name
+    .split("-")
+    .map((s) => s.toUpperCase())
+    .join("_");
+
 const SpeedController = ({ name }) => {
-  const speed =
-    networkSpeed[
-      name
-        .split("-")
-        .map((s) => s.toUpperCase())
-        .join("_") + "_SPEED"
-    ];
-  const [value, setValue] = React.useState(speed);
+  const [value, setValue] = React.useState(
+    networkSpeed[toConstantVariable(name) + "_SPEED"]
+  );
 
   useEffect(() => {
-    networkSpeed[name.toUpperCase() + "_SPEED"] = value;
+    networkSpeed[toConstantVariable(name) + "_SPEED"] = value;
   }, [value, name]);
 
   return (
