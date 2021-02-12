@@ -8,8 +8,8 @@ export default function PostEditor() {
   return (
     <CardsAPIProvider>
       <NetworkLogger />
-      <CardList />
       <PostCard />
+      <CardList />
     </CardsAPIProvider>
   );
 }

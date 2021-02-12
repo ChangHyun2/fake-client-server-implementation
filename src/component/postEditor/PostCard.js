@@ -4,27 +4,34 @@ import { Former, useForm, useField } from "../../lib/Former";
 import styled from "styled-components";
 
 const StyledPostCard = styled.div`
-  width: 200px;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
 
   & * {
-    width: 100%;
+    /* width: 100%; */
     box-sizing: border-box;
   }
 
   label {
     font-weight: bold;
+    margin-right: 5px;
   }
 
   input {
     margin-bottom: 10px;
+    margin-right: 10px;
   }
 
   button {
     color: #fff;
     background-color: #111;
     border: none;
-    padding: 4px;
+    padding: 3px 6px;
+    border-radius: 3px;
     cursor: pointer;
+    outline: none;
 
     &[disabled] {
       background-color: #777;

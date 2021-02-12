@@ -7,6 +7,7 @@ const StyledSpeedController = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 15px;
 
   label {
     width: 120px;
@@ -65,7 +66,7 @@ const SpeedController = ({ name }) => {
 export default function NetworkSpeed() {
   return (
     <div>
-      <h2>network speed</h2>
+      <h2 style={{ fontSize: "16px" }}>network speed</h2>
       <SpeedController name="Client-Server" />
       <SpeedController name="Server-DB" />
     </div>

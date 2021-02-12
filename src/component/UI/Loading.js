@@ -32,8 +32,8 @@ const StyledLoading = styled.span`
     animation: ${gradient} 1s infinite, ${flick} 1s infinite;
     line-height: 1;
     vertical-align: middle;
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
     border-radius: 100%;
     background-color: #000;
 
