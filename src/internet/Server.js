@@ -1,7 +1,7 @@
 import network from "./network";
 import http from "./http";
 
-function Server({ scheme = "http", domain }) {
+export function Server({ scheme = "http", domain }) {
   this.domain = domain;
   this.scheme = scheme;
   this.listen = (port, callback) => {
@@ -28,7 +28,7 @@ function Server({ scheme = "http", domain }) {
 
       request.body = JSON.parse(request.body);
 
-      const resolveResponse = () =>
+      const resolveResponsePromise = () =>
         new Promise((resolve, reject) => {
           const server = this.server;
           const message = { headers: { server } };
@@ -60,9 +60,12 @@ function Server({ scheme = "http", domain }) {
           }
         });
 
-      const response = await resolveResponse();
-
-      return http(client, response);
+      try {
+        const response = await resolveResponsePromise();
+        return http(client, response);
+      } catch (e) {
+        return http(client, e, true);
+      }
     };
   };
   this.route = (method, path, cb) => {

@@ -18,3 +18,5 @@ initBackend
   .then(() => ReactDOM.render(<App />, rootElement))
   .catch((e) => console.error(e))
   .finally();
+
+import("./example");

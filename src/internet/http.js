@@ -2,7 +2,7 @@ import network from "./network";
 import { TimeoutPromise } from "../utils";
 import { CLIENT_SERVER_SPEED } from "../variable";
 
-const http = async (destination, message) => {
+export const http = async (destination, message, isError) => {
   try {
     // network에서 receiver를 찾고
     const receiver = await TimeoutPromise((res, rej) => {
@@ -18,7 +18,7 @@ const http = async (destination, message) => {
 
     // 전송하는 메세지가 서버가 전송하는 응답 message일 경우
     if (message.headers.server) {
-      return receiver.catch(message);
+      return receiver.catch(message, isError);
     }
 
     // 전송하는 메세지가 클라이언트가 전송하는 요청 message일 경우

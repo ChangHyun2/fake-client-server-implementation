@@ -1,10 +1,13 @@
 import network from "./network";
 
-function Client(origin) {
+export function Client(origin) {
   this.origin = origin;
 
-  this.catch = (message) => {
+  this.catch = (message, isError) => {
     console.log("client catch response", message);
+    if (isError) {
+      throw message;
+    }
     return message;
   };
   this.promises = [];
